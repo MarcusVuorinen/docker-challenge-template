@@ -15,12 +15,17 @@ services:
       context: ./docker/api
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000"
+      - "3001"
+      - "3002"
+      
     environment:
       DB_HOST: db
       DB_USERNAME: MarkysDatabase
       DB_PASSWORD: ThePassword
       DB_DATABASE: TheBestDatabase
+    # Scale the service to have 3 instances
+    scale: 3
 
   db:
     image: mariadb
